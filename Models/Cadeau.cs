@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EasyGift.Models
 {
-    public class ListeCadeau
+    public class Cadeau
     {
         public int Id { get; set; }
         [Display (Name="Cadeau"), Required]
@@ -16,8 +16,10 @@ namespace EasyGift.Models
         
         [Display (Name="Prix"), Required]
         public decimal prix { get; set; }
+        [Display (Name="Lien")]
+        public decimal lien { get; set; }
         [Display (Name="Photo"), Required]
-        public string photo { get; set; } // pour le moment on décide de partir de l'url
+        public string photo { get; set; } // pour le moment on enregistre le nom de l'image
          [Display (Name="Déjà acheté"), Required]
         public string dejaAchete { get; set; }
     }
