@@ -55,6 +55,7 @@ namespace EasyGift.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,nom,prenom,DateNaissance,ville,cp,nomUtilisateur,mdp,mail,numero")] Utilisateur utilisateur)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(utilisateur);
