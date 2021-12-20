@@ -7,7 +7,7 @@ namespace EasyGift.Models
     {
         public int Id { get; set; }
         [Display (Name="Cadeau"), Required]
-        public string cadeau { get; set; }
+        public string titre { get; set; }
         [Display (Name="Commentaire"), Required]
         public string commentaire { get; set; }
 
@@ -17,7 +17,7 @@ namespace EasyGift.Models
         [Display (Name="Prix"), Required]
         public decimal prix { get; set; }
         [Display (Name="Lien")]
-        public decimal lien { get; set; }
+        public string lien { get; set; }
         [Display (Name="Photo"), Required]
         public string photo { get; set; } // pour le moment on enregistre le nom de l'image
          [Display (Name="Déjà acheté"), Required]

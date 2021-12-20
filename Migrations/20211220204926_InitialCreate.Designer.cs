@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGift.Migrations
 {
     [DbContext(typeof(EasyGiftContext))]
-    [Migration("20211211112929_InitialCreate")]
+    [Migration("20211220204926_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -16,6 +16,43 @@ namespace EasyGift.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.2");
+
+            modelBuilder.Entity("EasyGift.Models.Cadeau", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("commentaire")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("dejaAchete")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("lien")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("marque")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("photo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("prix")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("titre")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cadeau");
+                });
 
             modelBuilder.Entity("EasyGift.Models.Utilisateur", b =>
                 {

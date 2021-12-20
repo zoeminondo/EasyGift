@@ -21,10 +21,6 @@ namespace EasyGift.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("cadeau")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("commentaire")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -33,7 +29,7 @@ namespace EasyGift.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("lien")
+                    b.Property<string>("lien")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("marque")
@@ -45,6 +41,10 @@ namespace EasyGift.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("prix")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("titre")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

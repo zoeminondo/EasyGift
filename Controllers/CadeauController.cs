@@ -53,7 +53,7 @@ namespace EasyGift.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,cadeau,commentaire,marque,prix,lien,photo,dejaAchete")] Cadeau cadeau)
+        public async Task<IActionResult> Create([Bind("Id,titre,commentaire,marque,prix,lien,photo,dejaAchete")] Cadeau cadeau)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace EasyGift.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,cadeau,commentaire,marque,prix,lien,photo,dejaAchete")] Cadeau cadeau)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,titre,commentaire,marque,prix,lien,photo,dejaAchete")] Cadeau cadeau)
         {
             if (id != cadeau.Id)
             {
