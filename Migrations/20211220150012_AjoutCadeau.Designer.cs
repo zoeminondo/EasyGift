@@ -2,14 +2,16 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EasyGift.Migrations
 {
     [DbContext(typeof(EasyGiftContext))]
-    partial class EasyGiftContextModelSnapshot : ModelSnapshot
+    [Migration("20211220150012_AjoutCadeau")]
+    partial class AjoutCadeau
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
