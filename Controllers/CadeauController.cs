@@ -87,10 +87,18 @@ namespace EasyGift.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,titre,commentaire,marque,prix,lien,photo,dejaAchete")] Cadeau cadeau)
         {
+            Console.WriteLine("combiennnn"+ModelState.Count);
+            Console.WriteLine("Id="+cadeau.Id+" cadeau="+cadeau.titre+" commentaire="+cadeau.commentaire+" marque="+cadeau.marque+" prix="+cadeau.prix+
+            " lien="+cadeau.lien+" photo="+cadeau.photo+" dejaAchete="+cadeau.dejaAchete);
+
             if (id != cadeau.Id)
             {
                 return NotFound();
             }
+            if  (cadeau.photo !=  "none" )  
+            {  
+                Console.WriteLine("bonsoir bonsoir");
+            }  
 
             if (ModelState.IsValid)
             {

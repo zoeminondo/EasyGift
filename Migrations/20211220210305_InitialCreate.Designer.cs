@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGift.Migrations
 {
     [DbContext(typeof(EasyGiftContext))]
-    [Migration("20211220204926_InitialCreate")]
+    [Migration("20211220210305_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,6 @@ namespace EasyGift.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("dejaAchete")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("lien")
@@ -39,7 +38,6 @@ namespace EasyGift.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("photo")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("prix")

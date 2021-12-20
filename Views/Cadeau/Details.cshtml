@@ -5,23 +5,29 @@
 }
 
 <h1>Details</h1>
-
+            
 <div>
     <h4>Cadeau</h4>
     <hr />
     <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.photo)
+        </dt>
+        <dd class = "col-sm-10">
+            <img src= "~/images/none.png"   
+                         classe = "cercle arrondi"   
+                         hauteur= "40"  largeur= "40"   
+                         asp-append-version= "true"  />  
+            
+        </dd>
+
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.titre)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.titre)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.commentaire)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.commentaire)
-        </dd>
+        
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.marque)
         </dt>
@@ -41,11 +47,12 @@
             @Html.DisplayFor(model => model.lien)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.photo)
+            @Html.DisplayNameFor(model => model.commentaire)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.photo)
+            @Html.DisplayFor(model => model.commentaire)
         </dd>
+        
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.dejaAchete)
         </dt>

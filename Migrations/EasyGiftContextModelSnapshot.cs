@@ -26,7 +26,6 @@ namespace EasyGift.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("dejaAchete")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("lien")
@@ -37,7 +36,6 @@ namespace EasyGift.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("photo")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("prix")

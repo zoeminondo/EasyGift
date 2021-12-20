@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace EasyGift.Models
 {
@@ -17,10 +18,10 @@ namespace EasyGift.Models
         [Display (Name="Prix"), Required]
         public decimal prix { get; set; }
         [Display (Name="Lien")]
-        public string lien { get; set; }
-        [Display (Name="Photo"), Required]
+        public IFormFile lien { get; set; }
+        [Display (Name="Photo"), DisplayFormat(NullDisplayText = null)]
         public string photo { get; set; } // pour le moment on enregistre le nom de l'image
-         [Display (Name="Déjà acheté"), Required]
+         [Display (Name="Déjà acheté"), DisplayFormat(NullDisplayText = "0")]
         public string dejaAchete { get; set; }
     }
 }

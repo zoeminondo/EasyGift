@@ -6,33 +6,41 @@ namespace EasyGift.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "cadeau",
-                table: "Cadeau",
-                newName: "titre");
-
             migrationBuilder.AlterColumn<string>(
-                name: "lien",
+                name: "photo",
                 table: "Cadeau",
                 type: "TEXT",
                 nullable: true,
-                oldClrType: typeof(decimal),
+                oldClrType: typeof(string),
+                oldType: "TEXT");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "dejaAchete",
+                table: "Cadeau",
+                type: "TEXT",
+                nullable: true,
+                oldClrType: typeof(string),
                 oldType: "TEXT");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "titre",
-                table: "Cadeau",
-                newName: "cadeau");
-
-            migrationBuilder.AlterColumn<decimal>(
-                name: "lien",
+            migrationBuilder.AlterColumn<string>(
+                name: "photo",
                 table: "Cadeau",
                 type: "TEXT",
                 nullable: false,
-                defaultValue: 0m,
+                defaultValue: "",
+                oldClrType: typeof(string),
+                oldType: "TEXT",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "dejaAchete",
+                table: "Cadeau",
+                type: "TEXT",
+                nullable: false,
+                defaultValue: "",
                 oldClrType: typeof(string),
                 oldType: "TEXT",
                 oldNullable: true);
