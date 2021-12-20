@@ -13,4 +13,6 @@ using EasyGift.Models;
         }
 
         public DbSet<EasyGift.Models.Utilisateur> Utilisateur { get; set; }
+
+        public DbSet<EasyGift.Models.Cadeau> Cadeau { get; set; }
     }

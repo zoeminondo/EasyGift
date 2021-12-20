@@ -1,0 +1,60 @@
+@model EasyGift.Models.Cadeau
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Cadeau</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cadeau)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cadeau)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.commentaire)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.commentaire)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.marque)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.marque)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.prix)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.prix)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.lien)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.lien)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.photo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.photo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.dejaAchete)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dejaAchete)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
