@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;  
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -62,6 +63,10 @@ namespace EasyGift.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CadeauPhotoView model)
         {
+           /* Console.WriteLine("Id="+model.Id+" cadeau="+model.titre+" commentaire="+model.commentaire+" marque="+model.marque+" prix="+model.prix+
+            " lien="+model.lien+" photo="+model.photoTel+" dejaAchete="+model.dejaAchete);
+        */
+            
             if (ModelState.IsValid)
             {
                 Cadeau cadeau = new Cadeau{
@@ -70,11 +75,17 @@ namespace EasyGift.Controllers
                     commentaire = model.commentaire,
                     marque = model.marque,
                     prix = model.prix,
-                    photo = model.titre,
                     lien = model.lien,
                     dejaAchete = model.dejaAchete
 
                 };
+                if(UploadImage(model.photoTel, model.titre)){
+                    cadeau.photo = model.titre+".jpg";
+                }
+                else{
+                    cadeau.photo = "none.jpg";
+                }
+
                 _context.Add(cadeau);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -132,30 +143,19 @@ namespace EasyGift.Controllers
             }
             return View(cadeau);
         }
-        public async Task<IActionResult> UploadImage(int Id, IFormFile file)
+        public bool UploadImage(IFormFile file, string titre)
         {
-            if (file == null){
-                    return View();
-            }
-            
             // On va chercher toutes les informations sur ce cadeau id
-            var cadeau = await _context.Cadeau
-                .FirstOrDefaultAsync(m => m.Id == Id);
-
-            if (cadeau == null)
+            if(file != null)
             {
-                return NotFound();
+                string adresseEasyGift = Directory.GetCurrentDirectory();
+                using var image = Image.Load(file.OpenReadStream());
+                image.Mutate(x => x.Resize(256, 256));   // Il faut changer le nom de la photo
+                image.Save(adresseEasyGift+"/wwwroot/images/"+titre+".jpg");
+                return true;
             }
+            return false;
             
-            string adresseEasyGift = Directory.GetCurrentDirectory();
-            using var image = Image.Load(file.OpenReadStream());
-            image.Mutate(x => x.Resize(256, 256));   // Il faut changer le nom de la photo
-            image.Save(adresseEasyGift+"/wwwroot/images/"+cadeau.titre+".jpg");
-            // Il faut désormais modifier le nom dans la bdd pour que l'image se mette à jour 
-            cadeau.photo = cadeau.titre+".jpg";
-            _context.Update(cadeau);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
             
             
         }

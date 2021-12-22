@@ -20,7 +20,8 @@ namespace EasyGift.Views
         public decimal prix { get; set; }
         [Display (Name="Lien")]
         public string lien { get; set; }
-        [Display (Name="Photo"), DisplayFormat(NullDisplayText = null)]
+        [DataType(DataType.Upload)]
+        [Display (Name="Photo")]
         public IFormFile photoTel { get; set; }
          
         [Display (Name="Déjà acheté"), DisplayFormat(NullDisplayText = null)]

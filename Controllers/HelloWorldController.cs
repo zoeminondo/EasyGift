@@ -36,9 +36,9 @@ namespace EasyGift.Controllers
             
         }
         [HttpPost]
-        public IActionResult Upload(IFormFile file)
+        public IActionResult Upload(IFormFile file, string texte)
         {
-            
+            Console.WriteLine("file : "+file+"texte:"+texte);
             if (file == null){
                 Console.WriteLine("marche po tg");
 
@@ -46,7 +46,6 @@ namespace EasyGift.Controllers
             }
 
             else{
-                Console.WriteLine("test de hello world ta mer"+file);
                 string adresseEasyGift = Directory.GetCurrentDirectory();
                 using var image = Image.Load(file.OpenReadStream());
                 image.Mutate(x => x.Resize(256, 256));
