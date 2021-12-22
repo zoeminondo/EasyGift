@@ -40,12 +40,13 @@ namespace EasyGift.Controllers
         {
             
             if (file == null){
+                Console.WriteLine("marche po tg");
 
                     return View();
             }
 
             else{
-                
+                Console.WriteLine("test de hello world ta mer"+file);
                 string adresseEasyGift = Directory.GetCurrentDirectory();
                 using var image = Image.Load(file.OpenReadStream());
                 image.Mutate(x => x.Resize(256, 256));

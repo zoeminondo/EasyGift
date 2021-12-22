@@ -38,8 +38,9 @@
                 <span asp-validation-for="lien" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="photo" class="control-label"></label>
-                <input asp-for="photo" class="form-control" />
+                <label asp-for="photo" class="control-label"></label><br/>
+
+                <input asp-for="photo" type="file"  accept=".jpg, .png" />
                 <span asp-validation-for="photo" class="text-danger"></span>
             </div>
             <div class="form-group">

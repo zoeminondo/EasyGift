@@ -1,10 +1,11 @@
 using System;
+using System.IO;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 
-namespace EasyGift.Models
+namespace EasyGift.Views
 {
-    public class Cadeau
+    public class CadeauPhotoView
     {
         public int Id { get; set; }
         [Display (Name="Cadeau"), Required]
@@ -19,8 +20,8 @@ namespace EasyGift.Models
         public decimal prix { get; set; }
         [Display (Name="Lien")]
         public string lien { get; set; }
-        [Display (Name="Photo"), DisplayFormat(NullDisplayText = "none")]
-        public string photo { get; set; }
+        [Display (Name="Photo"), DisplayFormat(NullDisplayText = null)]
+        public IFormFile photoTel { get; set; }
          
         [Display (Name="Déjà acheté"), DisplayFormat(NullDisplayText = null)]
         public string dejaAchete { get; set; }
