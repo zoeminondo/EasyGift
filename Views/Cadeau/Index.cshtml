@@ -28,9 +28,6 @@
                 @Html.DisplayNameFor(model => model.lien)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.photo)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.dejaAchete)
             </th>
             <th></th>
@@ -40,6 +37,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                <img src="~/images/@item.photo"   
+                         class="rounded-circle"   
+                         height="40" width="40"   
+                         asp-append-version="true" /> 
                 @Html.DisplayFor(modelItem => item.titre)
             </td>
             <td>
@@ -53,9 +54,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.lien)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.photo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.dejaAchete)
