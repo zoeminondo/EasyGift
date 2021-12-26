@@ -2,16 +2,22 @@
 
 @{
     ViewData["Title"] = "Index";
+
 }
+
 
 <h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.dejaAchete)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.titre)
             </th>
@@ -27,15 +33,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.lien)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.dejaAchete)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                    <input type="checkbox" id="achete" name="achete" values="1" onClick="affichageCocher()"/>
+                @Html.DisplayFor(modelItem => item.dejaAchete)
+            </td>
+            
             <td>
                 <img src="~/images/@item.photo"   
                          class="rounded-circle"   
@@ -55,15 +64,23 @@
             <td>
                 @Html.DisplayFor(modelItem => item.lien)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dejaAchete)
-            </td>
+            
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" >Delete</a>
+                <a href="#" onclick= = affichageCocher()> Test</a>
             </td>
         </tr>
 }
-    </tbody>
+    </tbody>    
 </table>
+
+<script type="text/javascript">
+function affichageCocher()
+    {
+        alert ("wabon!");
+    }
+</script>
+
+

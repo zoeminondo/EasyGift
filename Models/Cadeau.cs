@@ -22,7 +22,7 @@ namespace EasyGift.Models
         [Display (Name="Photo"), DisplayFormat(NullDisplayText = "none")]
         public string photo { get; set; }
          
-        [Display (Name="Déjà acheté"), DisplayFormat(NullDisplayText = null)]
+        [Display (Name="Déjà acheté"), DisplayFormat(NullDisplayText = "0")]
         public string dejaAchete { get; set; }
     }
 }

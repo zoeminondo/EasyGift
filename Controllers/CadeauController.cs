@@ -148,30 +148,23 @@ namespace EasyGift.Controllers
         }
         public async Task<IActionResult> ModifierImage (IFormFile file, int? id)
         {
-            Console.WriteLine("bonspir t'es ici");
             if (id == null)
             {
                 return NotFound();
             }
-                Console.WriteLine("AAAAAAAAAAAAA 2");
             var cadeau = await _context.Cadeau.FirstOrDefaultAsync(m => m.Id == id);
             if (cadeau == null)
             {
-                Console.WriteLine("AAAAAAAAAAAAA 3");
 
                 return NotFound();
             }
-                Console.WriteLine("AAAAAAAAAAAAA 4");
 
             if(UploadImage(file, id.ToString())){
                     cadeau.photo = id.ToString()+".jpg";
-                Console.WriteLine("AAAAAAAAAAAAA 5");
 
                 }
                 else{
                     cadeau.photo = "none.jpg";
-                Console.WriteLine("AAAAAAAAAAAAA 6");
-
                 }
              _context.Update(cadeau);
                     await _context.SaveChangesAsync();
@@ -181,19 +174,15 @@ namespace EasyGift.Controllers
         }
         public bool UploadImage(IFormFile file, string titre)
         {
-                Console.WriteLine("UPPPPPPPPPPLOOOOOOOAD 1");
-
             // On va chercher toutes les informations sur ce cadeau id
             if(file != null)
             {
-                Console.WriteLine("UPPPPPPPPPPLOOOOOOOAD 2");
                 string adresseEasyGift = Directory.GetCurrentDirectory();
                 using var image = Image.Load(file.OpenReadStream());
                 image.Mutate(x => x.Resize(256, 256));   // Il faut changer le nom de la photo
                 image.Save(adresseEasyGift+"/wwwroot/images/"+titre+".jpg");
                 return true;
             }
-                Console.WriteLine("UPPPPPPPPPPLOOOOOOOAD 3");
 
             return false;
             
