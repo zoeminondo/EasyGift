@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGift.Migrations
 {
     [DbContext(typeof(EasyGiftContext))]
-    [Migration("20211221191638_InitialCreate")]
+    [Migration("20211228124147_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace EasyGift.Migrations
                     b.Property<string>("lien")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("listeId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("marque")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -49,7 +52,29 @@ namespace EasyGift.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("listeId");
+
                     b.ToTable("Cadeau");
+                });
+
+            modelBuilder.Entity("EasyGift.Models.Liste", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("createurid")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("nomListe")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("createurid");
+
+                    b.ToTable("Liste");
                 });
 
             modelBuilder.Entity("EasyGift.Models.Utilisateur", b =>
@@ -94,6 +119,29 @@ namespace EasyGift.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Utilisateur");
+                });
+
+            modelBuilder.Entity("EasyGift.Models.Cadeau", b =>
+                {
+                    b.HasOne("EasyGift.Models.Liste", "nomListe")
+                        .WithMany("cad")
+                        .HasForeignKey("listeId");
+
+                    b.Navigation("nomListe");
+                });
+
+            modelBuilder.Entity("EasyGift.Models.Liste", b =>
+                {
+                    b.HasOne("EasyGift.Models.Utilisateur", "createur")
+                        .WithMany()
+                        .HasForeignKey("createurid");
+
+                    b.Navigation("createur");
+                });
+
+            modelBuilder.Entity("EasyGift.Models.Liste", b =>
+                {
+                    b.Navigation("cad");
                 });
 #pragma warning restore 612, 618
         }

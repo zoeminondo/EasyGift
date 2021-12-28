@@ -9,7 +9,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Ajouter un nouveau cadeau</a>
 </p>
 
 <table class="table">
@@ -33,6 +33,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.lien)
             </th>
+
             
             <th></th>
         </tr>
@@ -41,7 +42,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                    <input type="checkbox" id="achete" name="achete" values="1" onClick="affichageCocher()"/>
+                <input type="checkbox" id="achete" name="achete" values="1" onClick="affichageCocher(document.getElementById('achete').checked)"/>
                 @Html.DisplayFor(modelItem => item.dejaAchete)
             </td>
             
@@ -69,18 +70,12 @@
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id" >Delete</a>
-                <a href="#" onclick= = affichageCocher()> Test</a>
             </td>
         </tr>
 }
     </tbody>    
 </table>
 
-<script type="text/javascript">
-function affichageCocher()
-    {
-        alert ("wabon!");
-    }
-</script>
+
 
 

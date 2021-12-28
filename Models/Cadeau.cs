@@ -14,7 +14,7 @@ namespace EasyGift.Models
 
         [Display (Name="Marque"), Required]
         public string marque { get; set; }
-        
+        // Le prix devrait être en format int et non decimal
         [Display (Name="Prix"), Required]
         public decimal prix { get; set; }
         [Display (Name="Lien")]
@@ -24,5 +24,7 @@ namespace EasyGift.Models
          
         [Display (Name="Déjà acheté"), DisplayFormat(NullDisplayText = "0")]
         public string dejaAchete { get; set; }
+        public int? listeId{get;set;}
+        public Liste nomListe {get;set;}
     }
 }

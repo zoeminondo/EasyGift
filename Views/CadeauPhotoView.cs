@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using EasyGift.Models;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 
@@ -26,5 +27,8 @@ namespace EasyGift.Views
          
         [Display (Name="Déjà acheté"), DisplayFormat(NullDisplayText = null)]
         public string dejaAchete { get; set; }
+        
+        [Display (Name="Liste")]
+        public Liste listeId { get; set; }
     }
 }

@@ -27,14 +27,21 @@ namespace EasyGift.Controllers
         }
 
         // GET: Cadeau
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? idListe)
         {
-            return View(await _context.Cadeau.ToListAsync());
+            var cadeau = await _context.Cadeau.Where(m => m.listeId == idListe).ToListAsync();
+            if(cadeau ==null){
+                return View();
+            }
+            else{
+                return View(cadeau);
+            }
         }
 
         // GET: Cadeau/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            Console.WriteLine("id cadeau détail"+id);
             if (id == null)
             {
                 return NotFound();
