@@ -25,6 +25,6 @@ namespace EasyGift.Models
         [Display (Name="Déjà acheté"), DisplayFormat(NullDisplayText = "0")]
         public string dejaAchete { get; set; }
         public int? listeId{get;set;}
-        public Liste nomListe {get;set;}
+        public Liste listeCadeau {get;set;}
     }
 }

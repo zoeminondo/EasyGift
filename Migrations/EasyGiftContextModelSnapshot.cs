@@ -121,11 +121,11 @@ namespace EasyGift.Migrations
 
             modelBuilder.Entity("EasyGift.Models.Cadeau", b =>
                 {
-                    b.HasOne("EasyGift.Models.Liste", "nomListe")
+                    b.HasOne("EasyGift.Models.Liste", "listeCadeau")
                         .WithMany("cad")
                         .HasForeignKey("listeId");
 
-                    b.Navigation("nomListe");
+                    b.Navigation("listeCadeau");
                 });
 
             modelBuilder.Entity("EasyGift.Models.Liste", b =>

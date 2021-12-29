@@ -1,12 +1,12 @@
 @model IEnumerable<EasyGift.Models.Cadeau>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Liste de cadeau";
 
 }
 
 
-<h1>Index</h1>
+<h1>Ma liste de cadeau </h1>
 
 <p>
     <a asp-action="Create">Ajouter un nouveau cadeau</a>
@@ -32,6 +32,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.lien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listeCadeau.nomListe)
             </th>
 
             
@@ -65,7 +68,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.lien)
             </td>
-            
+            <td>
+                @Html.DisplayFor(modelItem => item.listeCadeau.nomListe)
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

@@ -48,6 +48,23 @@
                 <span asp-validation-for="dejaAchete" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="listeId" class="control-label"></label>
+                <select name="listeId">
+                    
+                    <option value="0"> Aucune</option> 
+                    @{
+                        
+                        List<EasyGift.Models.Liste> liste = ViewBag.Liste;
+                        foreach(var l in liste){
+
+                            <option value="@l.Id"> @l.nomListe </option>
+                        }
+                    }
+                
+                </select>
+                <span asp-validation-for="dejaAchete" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

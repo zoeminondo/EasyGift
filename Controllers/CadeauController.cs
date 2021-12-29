@@ -29,6 +29,9 @@ namespace EasyGift.Controllers
         // GET: Cadeau
         public async Task<IActionResult> Index(int? idListe)
         {
+            if(idListe==null){
+                return View(await _context.Cadeau.ToListAsync());
+            }
             var cadeau = await _context.Cadeau.Where(m => m.listeId == idListe).ToListAsync();
             if(cadeau ==null){
                 return View();
@@ -60,6 +63,17 @@ namespace EasyGift.Controllers
         // GET: Cadeau/Create
         public IActionResult Create()
         {
+            var liste = _context.Liste;
+            var viewModel = new List<Liste>();
+            
+            foreach(var l in liste){
+                viewModel.Add(new Liste{
+                    Id = l.Id,
+                    nomListe = l.nomListe
+                });
+            }
+            ViewData["Liste"] = viewModel;
+            
             return View();
         }
 
@@ -68,12 +82,11 @@ namespace EasyGift.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CadeauPhotoView model)
+        public async Task<IActionResult> Create(int id, CadeauPhotoView model)
         {
            /* Console.WriteLine("Id="+model.Id+" cadeau="+model.titre+" commentaire="+model.commentaire+" marque="+model.marque+" prix="+model.prix+
             " lien="+model.lien+" photo="+model.photoTel+" dejaAchete="+model.dejaAchete);
         */
-            
             if (ModelState.IsValid)
             {
                 Cadeau cadeau = new Cadeau{
@@ -83,7 +96,8 @@ namespace EasyGift.Controllers
                     marque = model.marque,
                     prix = model.prix,
                     lien = model.lien,
-                    dejaAchete = model.dejaAchete
+                    dejaAchete = model.dejaAchete,
+                    listeId = model.listeId
 
                 };
                 if(UploadImage(model.photoTel, model.titre)){
@@ -95,14 +109,27 @@ namespace EasyGift.Controllers
 
                 _context.Add(cadeau);
                 await _context.SaveChangesAsync();
+                Console.WriteLine("ca me redirec tou");
                 return RedirectToAction(nameof(Index));
             }
+                Console.WriteLine("ca me redirec qdq");
+
             return View();
         }
 
         // GET: Cadeau/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var liste = _context.Liste;
+            var viewModel = new List<Liste>();
+            
+            foreach(var l in liste){
+                viewModel.Add(new Liste{
+                    Id = l.Id,
+                    nomListe = l.nomListe
+                });
+            }
+            ViewData["Liste"] = viewModel;
             var cadeau = await _context.Cadeau.FindAsync(id);
             if (cadeau == null)
             {
@@ -125,12 +152,12 @@ namespace EasyGift.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Cadeau cad)
         {
-            
+           
             if (id != cad.Id)
             {
                 return NotFound();
             }
-
+            
             if (ModelState.IsValid)
             {
                 try

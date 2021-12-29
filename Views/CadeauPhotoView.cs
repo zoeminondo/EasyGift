@@ -27,8 +27,9 @@ namespace EasyGift.Views
          
         [Display (Name="Déjà acheté"), DisplayFormat(NullDisplayText = null)]
         public string dejaAchete { get; set; }
-        
         [Display (Name="Liste")]
-        public Liste listeId { get; set; }
+
+        public int? listeId{get;set;}
+        public Liste listeCadeau {get;set;}
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGift.Migrations
 {
     [DbContext(typeof(EasyGiftContext))]
-    [Migration("20211228124147_InitialCreate")]
+    [Migration("20211229221622_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,11 +123,11 @@ namespace EasyGift.Migrations
 
             modelBuilder.Entity("EasyGift.Models.Cadeau", b =>
                 {
-                    b.HasOne("EasyGift.Models.Liste", "nomListe")
+                    b.HasOne("EasyGift.Models.Liste", "listeCadeau")
                         .WithMany("cad")
                         .HasForeignKey("listeId");
 
-                    b.Navigation("nomListe");
+                    b.Navigation("listeCadeau");
                 });
 
             modelBuilder.Entity("EasyGift.Models.Liste", b =>
