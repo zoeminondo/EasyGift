@@ -44,7 +44,6 @@ namespace EasyGift.Controllers
         // GET: Cadeau/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            Console.WriteLine("id cadeau détail"+id);
             if (id == null)
             {
                 return NotFound();
@@ -52,6 +51,7 @@ namespace EasyGift.Controllers
 
             var cadeau = await _context.Cadeau
                 .FirstOrDefaultAsync(m => m.Id == id);
+                
             if (cadeau == null)
             {
                 return NotFound();
@@ -61,7 +61,7 @@ namespace EasyGift.Controllers
         }
 
         // GET: Cadeau/Create
-        public IActionResult Create()
+        public IActionResult Create(int? idListe)
         {
             var liste = _context.Liste;
             var viewModel = new List<Liste>();
@@ -120,6 +120,7 @@ namespace EasyGift.Controllers
         // GET: Cadeau/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            // Besoin de mettre un ViewData pour avoir accès à toutes les listes depuis le ViewCadeau
             var liste = _context.Liste;
             var viewModel = new List<Liste>();
             
@@ -130,6 +131,8 @@ namespace EasyGift.Controllers
                 });
             }
             ViewData["Liste"] = viewModel;
+
+            
             var cadeau = await _context.Cadeau.FindAsync(id);
             if (cadeau == null)
             {
@@ -140,8 +143,8 @@ namespace EasyGift.Controllers
             {
                 return NotFound();
             }
-
-            
+            // Besoin de récupérer l'idListe de base pour le préséléctionner
+            ViewData["idListe"] = cadeau.listeId;
             return View(cadeau);
         }
 
@@ -160,6 +163,11 @@ namespace EasyGift.Controllers
             
             if (ModelState.IsValid)
             {
+                if(cad.listeId != null){
+                    Console.WriteLine("testion");
+                    var liste = await _context.Liste.FirstOrDefaultAsync(m => m.Id == cad.listeId);
+                    cad.listeCadeau = liste;
+                }
                 try
                 {
                     _context.Update(cad);

@@ -51,13 +51,18 @@
                 <label asp-for="listeId" class="control-label"></label>
                 <select name="listeId">
                     
-                    <option value="0"> Aucune</option> 
+                    <option value=""> Aucune</option> 
                     @{
                         
                         List<EasyGift.Models.Liste> liste = ViewBag.Liste;
                         foreach(var l in liste){
-
-                            <option value="@l.Id"> @l.nomListe </option>
+                            @if(l.Id == ViewBag.idListe){
+                                <option value="@l.Id" selected> @l.nomListe </option>
+                            }
+                            else{
+                                <option value="@l.Id"> @l.nomListe </option>
+                            }
+                            
                         }
                     }
                 

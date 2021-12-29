@@ -56,7 +56,6 @@
                     @{
                         
                         List<EasyGift.Models.Liste> liste = ViewBag.Liste;
-                        Console.WriteLine("testinette"+liste.Count());
                         foreach(var l in liste){
                             @:<option value="@l.Id"> @l.nomListe </option>
                         }
