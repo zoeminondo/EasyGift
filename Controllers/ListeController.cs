@@ -32,6 +32,7 @@ namespace EasyGift.Controllers
                 return NotFound();
             }
             var cadeau = await _context.Cadeau.Where(m => m.listeId == id).ToListAsync();
+            
             if (cadeau == null)
             {
                 return NotFound();

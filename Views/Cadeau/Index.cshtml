@@ -5,12 +5,21 @@
 
 }
 
-
-<h1>Ma liste de cadeau </h1>
+@{
+    if (@ViewBag.nomListe != null){
+        
+        <h1> @ViewBag.nomListe </h1>
+    }
+    else{
+        <h1> Ma liste de cadeau </h1>
+    }
+}
 
 <p>
-    <a asp-action="Create">Ajouter un nouveau cadeau</a>
+        @Html.ActionLink("Ajouter un nouveau cadeau", "Create", "Cadeau", new{idListe= @ViewBag.listeId})
+
 </p>
+<p> ceci est un test @ViewBag.listeId </p>
 
 <table class="table">
     <thead>

@@ -32,8 +32,13 @@ namespace EasyGift.Controllers
             if(idListe==null){
                 return View(await _context.Cadeau.Include(c => c.listeCadeau).ToListAsync());
             }
+            
             var cadeau = await _context.Cadeau.Where(m => m.listeId == idListe).Include(c => c.listeCadeau).ToListAsync();
+            var liste = await _context.Liste.FirstOrDefaultAsync(m => m.Id == idListe);
+            ViewData["nomListe"] = liste.nomListe;
+            ViewData["listeId"]= liste.Id;
             if(cadeau ==null){
+
                 return View();
             }
             else{
@@ -63,6 +68,9 @@ namespace EasyGift.Controllers
         // GET: Cadeau/Create
         public IActionResult Create(int? idListe)
         {
+            if(idListe != null){
+                @ViewData["listeId"]= idListe;
+            }
             var liste = _context.Liste;
             var viewModel = new List<Liste>();
             
