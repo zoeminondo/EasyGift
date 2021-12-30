@@ -16,7 +16,7 @@ namespace EasyGift.Models
         public string marque { get; set; }
         // Le prix devrait être en format int et non decimal
         [Display (Name="Prix"), Required]
-        public decimal prix { get; set; }
+        public double prix { get; set; }
         [Display (Name="Lien")]
         public string lien { get; set; }
         [Display (Name="Photo"), DisplayFormat(NullDisplayText = "none")]

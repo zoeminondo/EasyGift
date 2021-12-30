@@ -35,14 +35,14 @@ namespace EasyGift.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     nomListe = table.Column<string>(type: "TEXT", nullable: false),
-                    createurid = table.Column<int>(type: "INTEGER", nullable: true)
+                    createurId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Liste", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Liste_Utilisateur_createurid",
-                        column: x => x.createurid,
+                        name: "FK_Liste_Utilisateur_createurId",
+                        column: x => x.createurId,
                         principalTable: "Utilisateur",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
@@ -57,7 +57,7 @@ namespace EasyGift.Migrations
                     titre = table.Column<string>(type: "TEXT", nullable: false),
                     commentaire = table.Column<string>(type: "TEXT", nullable: false),
                     marque = table.Column<string>(type: "TEXT", nullable: false),
-                    prix = table.Column<decimal>(type: "TEXT", nullable: false),
+                    prix = table.Column<double>(type: "REAL", nullable: false),
                     lien = table.Column<string>(type: "TEXT", nullable: true),
                     photo = table.Column<string>(type: "TEXT", nullable: true),
                     dejaAchete = table.Column<string>(type: "TEXT", nullable: true),
@@ -80,9 +80,9 @@ namespace EasyGift.Migrations
                 column: "listeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Liste_createurid",
+                name: "IX_Liste_createurId",
                 table: "Liste",
-                column: "createurid");
+                column: "createurId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

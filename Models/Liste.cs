@@ -12,6 +12,7 @@ namespace EasyGift.Models
         public string nomListe { get; set; }
         [Display (Name="Propriétaire")]
         public Utilisateur createur{get;set;}     
+        public int? createurId{get;set;}
         public ICollection<Cadeau> cad {get;set;}    
     }
 }

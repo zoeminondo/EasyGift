@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGift.Migrations
 {
     [DbContext(typeof(EasyGiftContext))]
-    [Migration("20211229221622_InitialCreate")]
+    [Migration("20211230220405_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,8 +43,8 @@ namespace EasyGift.Migrations
                     b.Property<string>("photo")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("prix")
-                        .HasColumnType("TEXT");
+                    b.Property<double>("prix")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("titre")
                         .IsRequired()
@@ -63,7 +63,7 @@ namespace EasyGift.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("createurid")
+                    b.Property<int?>("createurId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("nomListe")
@@ -72,7 +72,7 @@ namespace EasyGift.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("createurid");
+                    b.HasIndex("createurId");
 
                     b.ToTable("Liste");
                 });
@@ -134,7 +134,7 @@ namespace EasyGift.Migrations
                 {
                     b.HasOne("EasyGift.Models.Utilisateur", "createur")
                         .WithMany()
-                        .HasForeignKey("createurid");
+                        .HasForeignKey("createurId");
 
                     b.Navigation("createur");
                 });

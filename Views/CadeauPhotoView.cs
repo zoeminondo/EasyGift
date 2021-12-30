@@ -18,7 +18,7 @@ namespace EasyGift.Views
         public string marque { get; set; }
         
         [Display (Name="Prix"), Required]
-        public decimal prix { get; set; }
+        public double prix { get; set; }
         [Display (Name="Lien")]
         public string lien { get; set; }
         [DataType(DataType.Upload)]

@@ -136,6 +136,11 @@ namespace EasyGift.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var liste = await _context.Liste.FindAsync(id);
+            var cadeau = await _context.Cadeau.Where(m => m.listeId == id).ToListAsync();
+            foreach(var c in cadeau){
+                c.listeId = null;
+                _context.Update(c);
+            }
             _context.Liste.Remove(liste);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

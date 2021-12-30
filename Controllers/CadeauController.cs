@@ -30,9 +30,9 @@ namespace EasyGift.Controllers
         public async Task<IActionResult> Index(int? idListe)
         {
             if(idListe==null){
-                return View(await _context.Cadeau.ToListAsync());
+                return View(await _context.Cadeau.Include(c => c.listeCadeau).ToListAsync());
             }
-            var cadeau = await _context.Cadeau.Where(m => m.listeId == idListe).ToListAsync();
+            var cadeau = await _context.Cadeau.Where(m => m.listeId == idListe).Include(c => c.listeCadeau).ToListAsync();
             if(cadeau ==null){
                 return View();
             }
@@ -109,11 +109,8 @@ namespace EasyGift.Controllers
 
                 _context.Add(cadeau);
                 await _context.SaveChangesAsync();
-                Console.WriteLine("ca me redirec tou");
                 return RedirectToAction(nameof(Index));
             }
-                Console.WriteLine("ca me redirec qdq");
-
             return View();
         }
 
@@ -163,9 +160,9 @@ namespace EasyGift.Controllers
             
             if (ModelState.IsValid)
             {
+                var liste = await _context.Liste.FirstOrDefaultAsync(m => m.Id == cad.listeId);
+
                 if(cad.listeId != null){
-                    Console.WriteLine("testion");
-                    var liste = await _context.Liste.FirstOrDefaultAsync(m => m.Id == cad.listeId);
                     cad.listeCadeau = liste;
                 }
                 try
@@ -227,10 +224,8 @@ namespace EasyGift.Controllers
             }
 
             return false;
-            
-            
-            
         }
+        
         // GET: Cadeau/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
