@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyGift.Migrations
 {
     [DbContext(typeof(EasyGiftContext))]
-    [Migration("20211230220405_InitialCreate")]
+    [Migration("20211230233918_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
